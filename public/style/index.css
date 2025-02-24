@@ -1,0 +1,43 @@
+body {
+    background: url('/images/index1.jpg') no-repeat center center/cover;
+    animation: zoomEffect 10s infinite alternate ease-in-out;
+}
+
+/* Zoom Effect */
+@keyframes zoomEffect {
+    0% {
+       
+        background: url('/images/index2.jpg') no-repeat center center/cover;
+        
+
+    }
+    50% {
+       
+        background: url('/images/index3.jpg') no-repeat center center/cover;
+    }
+    100% {
+       
+        background: url('/images/index1.jpg') no-repeat center center/cover;
+    }
+}
+
+.hero-section {
+    margin-top: -50px; /* Negative margin moves it up */
+}
+
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Search Box */
+.search-box {
+    max-width: 800px;
+    margin: auto;
+    height: 130px;
+}
