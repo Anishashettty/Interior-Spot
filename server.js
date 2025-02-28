@@ -17,6 +17,8 @@ app.get("/about", (req, res) => {
     res.render("about", { title: "About Page" });
 });
 
+
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
