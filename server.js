@@ -1,7 +1,8 @@
 const express = require("express");
-const nodemailer = require("nodemailer");
+const router = express.Router();
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+// const mongoose=require("mongoose");
 dotenv.config();
 
 const app = express();
@@ -27,35 +28,19 @@ app.get("/about", (req, res) => {
 });
 
 
-app.get("/contact", (req, res) => {
-    res.render("partials/contact", { showThankYou: false });
-});
+const contactRoutes = require("./routes/contactRoutes");
+app.use("/contact", contactRoutes);
 
-app.post("/send", async (req, res) => {
-    const { name, email, message } = req.body;
+// MongoDB connection string
+// const MONGO_URI = process.env.MONGO_URI;
 
-    const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-        },
-    });
-    const mailOptions = {
-        from: email,
-        to: process.env.EMAIL_USER,
-        subject: "New Contact Form Submission",
-        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-    };
-
-    try {
-        await transporter.sendMail(mailOptions);
-        res.render("partials/contact", { showThankYou: true });
-    } catch (error) {
-        console.error(error);
-        res.send("Error sending email. Try again later.");
-    }
-});
+// mongoose
+//   .connect(MONGO_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("MongoDB Connected Successfully!"))
+//   .catch((err) => console.error(" MongoDB Connection Error:", err));
 
 
 app.listen(PORT, () => {
